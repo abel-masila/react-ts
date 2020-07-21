@@ -3,7 +3,15 @@ import logo from "./logo.svg";
 import "./App.css";
 import Message from "./Message";
 
-class App extends React.Component<any> {
+const initialState = {
+  name: "Manny",
+  msg: "How are you?",
+};
+
+type State = Readonly<typeof initialState>;
+
+class App extends React.Component<any, State> {
+  readonly state: State = initialState;
   componentWillMount() {
     console.log("Almost there..");
   }
@@ -15,7 +23,7 @@ class App extends React.Component<any> {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <Message msg="This is a simple text" name="Manny" />
+          <Message msg={this.state.msg} name={this.state.name} />
         </header>
       </div>
     );
